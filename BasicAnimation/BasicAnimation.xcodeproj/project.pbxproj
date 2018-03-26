@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0411A92320690F6500BFDC41 /* DesignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0411A92220690F6500BFDC41 /* DesignView.swift */; };
+		0411A925206962E800BFDC41 /* AnimationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0411A924206962E800BFDC41 /* AnimationTextField.swift */; };
+		0411A9272069639400BFDC41 /* DesignTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0411A9262069639400BFDC41 /* DesignTextField.swift */; };
 		04361EF82066D478006896A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04361EF72066D478006896A7 /* AppDelegate.swift */; };
 		04361EFA2066D478006896A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04361EF92066D478006896A7 /* ViewController.swift */; };
 		04361EFD2066D478006896A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04361EFB2066D478006896A7 /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 
 /* Begin PBXFileReference section */
 		0411A92220690F6500BFDC41 /* DesignView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignView.swift; sourceTree = "<group>"; };
+		0411A924206962E800BFDC41 /* AnimationTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationTextField.swift; sourceTree = "<group>"; };
+		0411A9262069639400BFDC41 /* DesignTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignTextField.swift; sourceTree = "<group>"; };
 		04361EF42066D477006896A7 /* BasicAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04361EF72066D478006896A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04361EF92066D478006896A7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +69,8 @@
 				04361F092066EBFB006896A7 /* Animation.swift */,
 				04361F0B2066EF19006896A7 /* AnimationView.swift */,
 				0411A92220690F6500BFDC41 /* DesignView.swift */,
+				0411A924206962E800BFDC41 /* AnimationTextField.swift */,
+				0411A9262069639400BFDC41 /* DesignTextField.swift */,
 				04361EFB2066D478006896A7 /* Main.storyboard */,
 				04361EFE2066D478006896A7 /* Assets.xcassets */,
 				04361F002066D478006896A7 /* LaunchScreen.storyboard */,
@@ -150,6 +156,8 @@
 				04361F0C2066EF19006896A7 /* AnimationView.swift in Sources */,
 				0411A92320690F6500BFDC41 /* DesignView.swift in Sources */,
 				04361F0A2066EBFB006896A7 /* Animation.swift in Sources */,
+				0411A925206962E800BFDC41 /* AnimationTextField.swift in Sources */,
+				0411A9272069639400BFDC41 /* DesignTextField.swift in Sources */,
 				04361EF82066D478006896A7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

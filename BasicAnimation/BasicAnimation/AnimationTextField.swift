@@ -1,14 +1,14 @@
 //
-//  AnimationView.swift
+//  AnimationTextField.swift
 //  BasicAnimation
 //
-//  Created by mac on 24.03.18.
+//  Created by mac on 26.03.18.
 //  Copyright © 2018 Dim Malysh. All rights reserved.
 //
 
 import UIKit
 
-class AnimationView: UIView, Animatable {
+class AnimationTextField: UITextField, Animatable {
     @IBInspectable var startAnimation: Bool = false
     @IBInspectable var nameOfAnimation: String = ""
     @IBInspectable var curve: String = ""

@@ -11,9 +11,14 @@ import UIKit
 @objc public protocol Animatable {
     var startAnimation: Bool {get set}
     var nameOfAnimation: String {get set}
+    var curve: String {get set}
     var x: CGFloat {get set}
     var y: CGFloat {get set}
+    var scaleX: CGFloat {get set}
+    var scaleY: CGFloat {get set}
     var force: CGFloat {get set}
+    var repeatCount: Float {get set}
+    var opacity: CGFloat {get set}
     var animateForm: Bool {get set}
     var duration: CGFloat {get set}
     var delay: CGFloat {get set}
@@ -22,6 +27,8 @@ import UIKit
     
     //UIView
     var transform: CGAffineTransform {get set}
+    var layer: CALayer {get}
+    var alpha: CGFloat {get set}
     
     func animate()
 }
@@ -77,6 +84,15 @@ class Animation: NSObject {
             self.view.nameOfAnimation = newValue
         }
     }
+    
+    private var curve: String {
+        get {
+            return self.view.curve
+        }
+        set {
+            self.view.curve = newValue
+        }
+    }
 
     private var x: CGFloat {
         get {
@@ -96,12 +112,48 @@ class Animation: NSObject {
         }
     }
     
+    private var scaleX: CGFloat {
+        get {
+            return self.view.scaleX
+        }
+        set {
+            self.view.scaleX = newValue
+        }
+    }
+    
+    private var scaleY: CGFloat {
+        get {
+            return self.view.scaleY
+        }
+        set {
+            self.view.scaleY = newValue
+        }
+    }
+    
     private var force: CGFloat {
         get {
             return self.view.force
         }
         set {
             self.view.force = newValue
+        }
+    }
+    
+    private var repeatCount: Float {
+        get {
+            return self.view.repeatCount
+        }
+        set {
+            self.view.repeatCount = newValue
+        }
+    }
+    
+    private var opacity: CGFloat {
+        get {
+            return self.view.opacity
+        }
+        set {
+            self.view.opacity = newValue
         }
     }
     
@@ -153,18 +205,128 @@ class Animation: NSObject {
         }
     }
     
+    private var alpha: CGFloat {
+        get {
+            return self.view.alpha
+        }
+        set {
+            self.view.alpha = newValue
+        }
+    }
+    
+    private var layer: CALayer {
+        return view.layer
+    }
+
     enum AnimationPreset: String {
         case slideLeft = "slideLeft"
         case slideRight = "slideRight"
+        case zoomIn = "zoomIn"
+        case zoomOut = "zoomOut"
+        case squeezeLeft = "squeezeLeft"
+        case squeezeRight = "squeezeRight"
+        case shake = "shake"
+        case morph = "morph"
+    }
+    
+    enum AnimationCurve: String {
+        case easeIn = "easeIn"
+        case easeOut = "easeOut"
+        case easeInOut = "easeInOut"
+        case linear = "linear"
+        case easeOutCirc = "easeOutCirc"
+        case easeInOutCirc = "easeInOutCirc"
     }
     
     func animatePreset() {
+        alpha = 1.0
         if let animation = AnimationPreset(rawValue: nameOfAnimation) {
             switch animation {
-            case .slideLeft: x = 300 * force
-            case .slideRight: x = -300 * force
+            case .slideLeft:
+                x = 300.0 * force
+
+            case .slideRight:
+                x = -300.0 * force
+                
+            case .zoomIn:
+                opacity = 0.0
+                scaleX = 2.0 * force
+                scaleY = 2.0 * force
+                
+            case .zoomOut:
+                opacity = 0.0
+                animateForm = false
+                scaleX = 2.0 * force
+                scaleY = 2.0 * force
+                
+            case .squeezeLeft:
+                x = 300.0
+                scaleX = 3.0 * force
+                
+            case .squeezeRight:
+                x = -300.0
+                scaleX = 3.0 * force
+                
+            case .shake:
+                let animation = CAKeyframeAnimation()
+                animation.keyPath = "position.x"
+                animation.values = [0, 30 * force, -30 * force, 30 * force, 0]
+                animation.keyTimes = [0, 0.2, 0.4, 0.6, 0.8, 1.0]
+                animation.timingFunction = animateCurveTimingFunction(curve: curve)
+                animation.duration = CFTimeInterval(duration)
+                animation.isAdditive = true
+                animation.repeatCount = repeatCount
+                animation.beginTime = CACurrentMediaTime() + CFTimeInterval(delay)
+                layer.add(animation, forKey: "shake")
+                
+            case .morph:
+                let morphX = CAKeyframeAnimation()
+                morphX.keyPath = "transform.scale.x"
+                morphX.values = [1, 1.3 * force, 0.7, 1.3 * force, 1]
+                morphX.keyTimes = [0, 0.2, 0.4, 0.6, 0.8, 1.0]
+                morphX.timingFunction = animateCurveTimingFunction(curve: curve)
+                morphX.duration = CFTimeInterval(duration)
+                morphX.repeatCount = repeatCount
+                morphX.beginTime = CACurrentMediaTime() + CFTimeInterval(delay)
+                layer.add(morphX, forKey: "morphX")
+                
+                let morphY = CAKeyframeAnimation()
+                morphY.keyPath = "transform.scale.y"
+                morphY.values = [1, 0.7, 1.3 * force, 0.7, 1]
+                morphY.keyTimes = [0, 0.2, 0.4, 0.6, 0.8, 1.0]
+                morphY.timingFunction = animateCurveTimingFunction(curve: curve)
+                morphY.duration = CFTimeInterval(duration)
+                morphY.repeatCount = repeatCount
+                morphY.beginTime = CACurrentMediaTime() + CFTimeInterval(delay)
+                layer.add(morphY, forKey: "morphY")
             }
         }
+    }
+    
+    func animateCurveTimingFunction(curve: String) -> CAMediaTimingFunction {
+        if let curve = AnimationCurve(rawValue: curve) {
+            switch curve {
+            case .easeIn: return CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+            case .easeOut: return CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+            case .easeInOut: return CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            case .linear: return CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+            case .easeOutCirc: return CAMediaTimingFunction(controlPoints: 0.075, 0.82, 0.165, 1.0)
+            case .easeInOutCirc: return CAMediaTimingFunction(controlPoints: 0.785, 0.135, 0.15, 0.86)
+            }
+        }
+        return CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
+    }
+    
+    func animationOptions(curve: String) -> UIViewAnimationOptions {
+        if let curve = AnimationCurve(rawValue: curve) {
+            switch curve {
+            case .easeIn: return .curveEaseIn
+            case .easeOut: return .curveEaseOut
+            case .easeInOut: return .curveEaseInOut
+            default: break
+            }
+        }
+        return .curveLinear
     }
     
     func animate() {
@@ -176,16 +338,22 @@ class Animation: NSObject {
     func configureView() {
         if animateForm {
             let translate = CGAffineTransform(translationX: x, y: y)
-            transform = translate
+            let scale = CGAffineTransform(scaleX: scaleX, y: scaleY)
+            transform = translate.concatenating(scale)
+            alpha = opacity
         }
         
-        UIView.animate(withDuration: TimeInterval(duration), delay: TimeInterval(delay), usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: .curveEaseInOut, animations: { [weak self] in
+        UIView.animate(withDuration: TimeInterval(duration), delay: TimeInterval(delay), usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: animationOptions(curve: curve), animations: { [weak self] in
             if let _self = self {
                 if _self.animateForm {
                     _self.transform = .identity
+                    _self.alpha = 1.0
                 } else {
                     let translate = CGAffineTransform(translationX: _self.x, y: _self.y)
-                    _self.transform = translate
+                    let scale = CGAffineTransform(scaleX: _self.scaleX, y: _self.scaleY)
+                    _self.transform = translate.concatenating(scale)
+                    
+                    _self.alpha = _self.opacity
                 }
             }
         }) { [weak self] finished in
@@ -201,6 +369,7 @@ class Animation: NSObject {
         velocity = 0.7
         delay = 0.0
         duration = 0.7
+        repeatCount = 1.0
     }
     
     func customdidMoveToWindow() {
@@ -209,7 +378,7 @@ class Animation: NSObject {
                 shouldAnimateAfterActive = true
                 return
             }
-            
+            alpha = 0.0
             animate()
         }
     }
