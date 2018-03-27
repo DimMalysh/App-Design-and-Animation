@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" id="d2a-0r-A4K" userLabel="Dialog View">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" id="d2a-0r-A4K" userLabel="Dialog View" customClass="DesignView" customModule="StreetsApp" customModuleProvider="target">
                                         <rect key="frame" x="10" y="100" width="300" height="285"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -48,7 +48,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="zva-97-8tx" kind="modal" animates="NO" modalTransitionStyle="crossDissolve" id="5ti-TQ-wyY"/>
+                                                            <segue destination="zva-97-8tx" kind="modal" modalTransitionStyle="crossDissolve" id="5ti-TQ-wyY"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -89,6 +89,17 @@
                                             <outletCollection property="gestureRecognizers" destination="eXW-27-MeY" appends="YES" id="z2o-vZ-TYj"/>
                                         </connections>
                                     </view>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8ny-3z-l9y" userLabel="Mask Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" red="0.49803921568627452" green="0.49803921568627452" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="maskButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jDt-kT-EiZ"/>
+                                        </connections>
+                                    </button>
                                     <view contentMode="scaleToFill" misplaced="YES" id="1T2-Xt-OIp" userLabel="User View">
                                         <rect key="frame" x="43" y="375" width="235" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -97,7 +108,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="235" height="50"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="x45-su-b9o" userLabel="Like Button">
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="x45-su-b9o" userLabel="Like Button" customClass="AnimationButton" customModule="StreetsApp" customModuleProvider="target">
                                                 <rect key="frame" x="25" y="15" width="37" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
@@ -106,8 +117,15 @@
                                                 <state key="normal" title="29" image="image-like">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameOfAnimation" value="slideRight"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="startAnimation" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                                                        <real key="value" value="1.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wnW-V5-MYa" userLabel="Comment Button">
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wnW-V5-MYa" userLabel="Comment Button" customClass="AnimationButton" customModule="StreetsApp" customModuleProvider="target">
                                                 <rect key="frame" x="173" y="15" width="37" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
@@ -116,8 +134,15 @@
                                                 <state key="normal" title="12" image="image-comment">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameOfAnimation" value="slideLeft"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="startAnimation" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                                                        <real key="value" value="1.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nca-ZC-sLW" userLabel="Share Button">
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nca-ZC-sLW" userLabel="Share Button" customClass="AnimationButton" customModule="StreetsApp" customModuleProvider="target">
                                                 <rect key="frame" x="89" y="15" width="56" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
@@ -126,11 +151,21 @@
                                                 <state key="normal" title="Share" image="image-share">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="startAnimation" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameOfAnimation" value="fadeIn"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="shareButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ruu-lU-IXQ"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view hidden="YES" contentMode="scaleToFill" misplaced="YES" id="AHY-0r-9ei" userLabel="Popover View">
+                                    <view hidden="YES" contentMode="scaleToFill" misplaced="YES" id="AHY-0r-9ei" userLabel="Popover View" customClass="AnimationView" customModule="StreetsApp" customModuleProvider="target">
                                         <rect key="frame" x="30" y="413" width="260" height="155"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -138,24 +173,24 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="260" height="155"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="lG4-jd-eod" userLabel="Twitter Button">
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="lG4-jd-eod" userLabel="Twitter Button" customClass="AnimationButton" customModule="StreetsApp" customModuleProvider="target">
                                                 <rect key="frame" x="40" y="52" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="button-twitter"/>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="InZ-sW-CeL" userLabel="Facebook Button">
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="InZ-sW-CeL" userLabel="Facebook Button" customClass="AnimationButton" customModule="StreetsApp" customModuleProvider="target">
                                                 <rect key="frame" x="170" y="52" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="button-facebook"/>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HuS-0m-6bd" userLabel="Twitter Label">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HuS-0m-6bd" userLabel="Twitter Label" customClass="AnimationLabel" customModule="StreetsApp" customModuleProvider="target">
                                                 <rect key="frame" x="44" y="110" width="43" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="0.60301724137931034" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FXP-5m-f0g" userLabel="Facebook Label">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FXP-5m-f0g" userLabel="Facebook Label" customClass="AnimationLabel" customModule="StreetsApp" customModuleProvider="target">
                                                 <rect key="frame" x="164" y="110" width="63" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
@@ -179,10 +214,21 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="avatarImageVIew" destination="qUb-Wx-gvT" id="Nmi-dg-IpU"/>
+                        <outlet property="backgroundDialogImageView" destination="et8-J9-h8e" id="Kes-Vz-nWx"/>
+                        <outlet property="backgroundImageView" destination="Xhd-jj-0MZ" id="4Zw-yz-AST"/>
                         <outlet property="backgroundMaskView" destination="D0G-gS-Si2" id="e0h-1f-mK7"/>
                         <outlet property="bottomView" destination="PEy-px-rll" id="Nsd-Bc-BwM"/>
                         <outlet property="dialogView" destination="d2a-0r-A4K" id="5c8-75-9Eh"/>
+                        <outlet property="facebookButton" destination="InZ-sW-CeL" id="qmi-IM-tEc"/>
+                        <outlet property="facebookLabel" destination="FXP-5m-f0g" id="gzw-ES-lXW"/>
                         <outlet property="headerView" destination="ELP-nF-w2g" id="v07-I6-Q2Q"/>
+                        <outlet property="maskButton" destination="8ny-3z-l9y" id="Yjs-Aw-cNp"/>
+                        <outlet property="shareButton" destination="nca-ZC-sLW" id="SJr-DD-PTf"/>
+                        <outlet property="shareView" destination="AHY-0r-9ei" id="238-mW-a6w"/>
+                        <outlet property="titleLabel" destination="aCX-KD-Lhi" id="bFv-8O-rQG"/>
+                        <outlet property="twitterButton" destination="lG4-jd-eod" id="tXh-nh-tln"/>
+                        <outlet property="twitterLabel" destination="HuS-0m-6bd" id="JZz-Yh-Fao"/>
                         <outlet property="userView" destination="1T2-Xt-OIp" id="ylT-U8-HJo"/>
                     </connections>
                 </viewController>
@@ -275,7 +321,7 @@ Larger and busier boulevards usually feature a median. In some countries, the te
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="button-back"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="modal" animates="NO" modalTransitionStyle="crossDissolve" id="CzC-az-sXA"/>
+                                    <segue destination="BYZ-38-t0r" kind="modal" modalTransitionStyle="crossDissolve" id="CzC-az-sXA"/>
                                 </connections>
                             </button>
                         </subviews>
